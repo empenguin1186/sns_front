@@ -1,30 +1,43 @@
 package jp.co.training.snsFront;
 
-import jp.co.training.snsFront.Model.UserDto;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.templateresolver.ITemplateResolver;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
-@EnableWebSecurity
+@Getter
+@Setter
+@Component
+@Validated
 @Configuration
+@ConfigurationProperties(prefix = "path")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static String ROLE_USER = "USER";
+    @Value("${role.USER}")
+    private String ROLE_USER;
+
+    private String CERT_PROCCESSING_PATH;
+
+    private String LOGIN_PATH;
+
+    private String DEFAULT_SUCCESS_PATH;
 
     @Autowired
-    UserDetailsService userDetailsService;
+    @Qualifier("authenticationRealm")
+    private UserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -39,28 +52,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        String[] permittedUrls = {"/login","/"};
+        String[] permittedUrls = {LOGIN_PATH, CERT_PROCCESSING_PATH};
         http.authorizeRequests()
-                    .antMatchers(permittedUrls).permitAll()
-                    .antMatchers("/timeline").hasRole(ROLE_USER)
-                .and()
-                .exceptionHandling();
+                .antMatchers(permittedUrls).permitAll()
+                .antMatchers("/timeline").hasAnyAuthority(ROLE_USER);
 
         http.formLogin()
-                .loginProcessingUrl("/authenticate")
-                    .loginPage("/login")
-//                .successForwardUrl("/profile/kodaira")
-                    .failureUrl("/login?error=notPermitted")
-                    .defaultSuccessUrl("/timeline", true)
-                    .usernameParameter("username")
-                    .passwordParameter("password").permitAll();
-//                .csrf()
+                .loginProcessingUrl(CERT_PROCCESSING_PATH)
+                .loginPage(LOGIN_PATH)
+                .permitAll()
+                .failureUrl(LOGIN_PATH + "?error=notPermitted")
+                .defaultSuccessUrl(DEFAULT_SUCCESS_PATH, false)
+                .usernameParameter("username")
+                .passwordParameter("password").permitAll()
+                .and()
+                .csrf();
 //                .and()
 //                .logout()
 //                    .logoutSuccessUrl("/login");
@@ -85,11 +97,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        auth.inMemoryAuthentication()
 //                .withUser(support.getUsername()).password(support.getPassword()).roles(ROLE_USER);
 //    }
-//
-//    @Bean
-//    @ConfigurationProperties("inmotion.user")
-//    public UserDto supportUser() {
-//        return new UserDto();
-//    }
 
 }
+

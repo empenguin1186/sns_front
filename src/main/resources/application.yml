@@ -1,4 +1,21 @@
-inmotion:
-  user:
-    username: kodaira
-    password: Nagaoka@2287
+server:
+  port: 8090
+
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+
+# APIエンドポイント設定
+endpoint:
+  uri: http://localhost:8080/
+
+path:
+  CERT_PROCCESSING_PATH: /authenticate
+  LOGIN_PATH: /login
+  DEFAULT_SUCCESS_PATH: /timeline
+
+role:
+  USER: USER
+  ADMIN: ADMIN

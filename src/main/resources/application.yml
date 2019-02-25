@@ -15,6 +15,7 @@ path:
   CERT_PROCCESSING_PATH: /authenticate
   LOGIN_PATH: /login
   DEFAULT_SUCCESS_PATH: /timeline
+  LOGOUT_PATH: /logout
 
 role:
   USER: USER

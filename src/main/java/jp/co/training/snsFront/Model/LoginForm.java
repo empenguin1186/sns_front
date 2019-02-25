@@ -2,8 +2,9 @@ package jp.co.training.snsFront.Model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Setter
@@ -12,11 +13,12 @@ public class LoginForm implements Serializable {
 
     private static final long serialVersionUID = -4165914705498462325L;
 
-    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 50)
     String username;
 
-    @NotEmpty
+    @NotNull
+    @Size(min = 4, max = 50)
     String password;
-
 
 }

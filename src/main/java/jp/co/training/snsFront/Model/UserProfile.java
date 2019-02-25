@@ -15,6 +15,8 @@ public class UserProfile implements Serializable {
 
 	private String comment;
 
+	private String email;
+
 	private String place;
 
 	private long birthDay;

@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
@@ -34,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private String LOGIN_PATH;
 
     private String DEFAULT_SUCCESS_PATH;
+
+    private String LOGOUT_PATH;
 
     @Autowired
     @Qualifier("authenticationRealm")
@@ -73,30 +76,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password").permitAll()
                 .and()
                 .csrf();
-//                .and()
-//                .logout()
-//                    .logoutSuccessUrl("/login");
+
+        http.logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_PATH))
+                .deleteCookies("SESSION", "JSESSIONID")
+                .logoutSuccessUrl(LOGIN_PATH)
+                .invalidateHttpSession(true)
+                .permitAll();
     }
-
-//    @Autowired
-//    public ITemplateResolver templateResolver;
-//
-//    @Bean
-//    public SpringTemplateEngine templateEngine() {
-//        SpringTemplateEngine engine = new SpringTemplateEngine();
-//        engine.addDialect(new SpringSecurityDialect());
-//        engine.setTemplateResolver(templateResolver);
-//        return engine;
-//    }
-//
-//
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        UserDto support = supportUser();
-//
-//        auth.inMemoryAuthentication()
-//                .withUser(support.getUsername()).password(support.getPassword()).roles(ROLE_USER);
-//    }
-
 }
 

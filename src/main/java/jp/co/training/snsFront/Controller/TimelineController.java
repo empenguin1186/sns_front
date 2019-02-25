@@ -29,7 +29,6 @@ public class TimelineController {
 	@RequestMapping(method=RequestMethod.GET)
 	String showTimeline(@AuthenticationPrincipal User user, Model model) throws URISyntaxException {
 		String userId = user.getUsername();
-
 		RequestEntity requestEntity = RequestEntity
 						.get(new URI(URI + "tweets/"+userId+"/follow"))
 						.build();

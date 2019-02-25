@@ -1,6 +1,8 @@
 package jp.co.training.snsFront.Controller;
 
 import jp.co.training.snsFront.Model.LoginForm;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@Data
+@ConfigurationProperties(prefix = "path")
 public class AuthenticationController {
 
-    @RequestMapping(path={"/", "/login"}, method = RequestMethod.GET)
+    private String CERT_PROCCESSING_PATH;
+
+    @RequestMapping(path = {"/", "/login"}, method = RequestMethod.GET)
     public String login(@RequestParam(value = "error", required = false) String error, Model model) {
         if (error != null) {
             model.addAttribute("errorMessage", error);
@@ -21,12 +27,15 @@ public class AuthenticationController {
         return "login";
     }
 
-    @RequestMapping(path={"/", "/login"}, method = RequestMethod.POST)
-    public String process(@Validated @ModelAttribute LoginForm form, BindingResult br){
+
+    /* 動作せず */
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public String process(@Validated @ModelAttribute LoginForm form, BindingResult br, Model model){
         if (br.hasErrors()){
-            return "login";
+            return "redirect:/login?error=InputValueIsInvalid";
         }
-        return "forward:/authenticate";
+        model.addAttribute(form);
+        return "forward:" + CERT_PROCCESSING_PATH;
     }
 
 //    @RequestMapping(path="/authenticate", method = RequestMethod.POST)

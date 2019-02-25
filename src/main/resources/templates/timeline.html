@@ -66,6 +66,9 @@
 </nav>
 
 <main>
+    <form role="form" id="logout" th:action="@{/logout}" method="post">
+        <button type="submit">ログアウト</button>
+    </form>
 
     <!--<div class="container" th:each="tweet : ${tweets}">-->
         <!--<div class="row justify-content-end">-->

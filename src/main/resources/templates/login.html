@@ -5,30 +5,31 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
     <title>SNS Application</title>
 </head>
-<body>
-<div style="background: url(https://www.pakutaso.com/shared/img/thumb/MIYA2018102DSCF8768_TP_V.jpg);">
-    <div class="form-wrapper">
-        <h1>Sign In</h1>
-        <form method="post" th:action="@{'/authenticate'}" class="col-8 mx-auto">
-            <div class="form-item">
-                <label for="username"></label>
-                <input type="text" name="username" id="username" required="required" placeholder="User name"></input>
+<body style="background-size: cover; background-image: url(https://www.pakutaso.com/shared/img/thumb/MIYA160131480493_TP_V.jpg);">
+    <header class="container">
+        <h1 class="text-white">Welcome to SNS Application</h1>
+        <div class="form-wrapper">
+            <h1>Sign In</h1>
+            <form method="post" th:action="@{'/authenticate'}" class="col-8 mx-auto">
+                <div class="form-item">
+                    <label for="username"></label>
+                    <input type="text" name="username" id="username" required="required" placeholder="User name"></input>
+                </div>
+                <div class="form-item">
+                    <label for="password"></label>
+                    <input type="password" name="password" id="password" required="required" placeholder="Password"></input>
+                </div>
+                <div class="button-panel">
+                    <input type="submit" class="button" title="Sign In" value="Sign In"></input>
+                </div>
+            </form>
+            <div class="form-footer">
+                <p><a href="#">Create an account</a></p>
+                <p><a href="#">Forgot password?</a></p>
             </div>
-            <div class="form-item">
-                <label for="password"></label>
-                <input type="password" name="password" id="password" required="required" placeholder="Password"></input>
-            </div>
-            <div class="button-panel">
-                <input type="submit" class="button" title="Sign In" value="Sign In"></input>
-            </div>
-        </form>
-        <div class="form-footer">
-            <p><a href="#">Create an account</a></p>
-            <p><a href="#">Forgot password?</a></p>
         </div>
-    </div>
+    </header>
     <script src="/js/jquery-3.3.1.slim.min.js" th:href="@{/js/jquery-3.3.1.slim.min.js}"></script>
     <script src="/js/bootstrap.bundle.min.js" th:href="@{/js/bootstrap.bundle.min.js}"></script>
-</div>
 </body>
 </html>

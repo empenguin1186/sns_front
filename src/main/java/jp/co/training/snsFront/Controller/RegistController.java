@@ -2,7 +2,9 @@ package jp.co.training.snsFront.Controller;
 
 import jp.co.training.snsFront.Model.RegistForm;
 import jp.co.training.snsFront.Model.UserProfile;
+import jp.co.training.snsFront.Service.MailService;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,9 @@ import java.time.LocalDate;
 public class RegistController {
 
     private String uri;
+
+    @Autowired
+    MailService service;
 
     @ModelAttribute
     public RegistForm setUpForm(){
@@ -75,6 +80,8 @@ public class RegistController {
                 .post(path)
                 .body(user);
         ResponseEntity<String> res = restTemplate.exchange(entity, String.class);
+
+        service.send("ようこそSNSへ", "クリックしてね", email);
 
         return "login";
     }

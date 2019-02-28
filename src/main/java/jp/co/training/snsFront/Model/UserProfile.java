@@ -1,5 +1,6 @@
 package jp.co.training.snsFront.Model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,12 +8,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
+@Builder
 public class UserProfile implements Serializable {
 
 	private String userId;
 
 	private String userName;
+
+	private String encodedPassword;
 
 	private String comment;
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <title>SNS Application</title>
+</head>
+<body style="background-size: cover; background-image: url(https://www.pakutaso.com/shared/img/thumb/MIYA160131480493_TP_V.jpg);">
+<header class="container">
+    <h1 class="text-white">Please fill form below</h1>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        登録情報を正しく入力してください。
+    </div>
+    <div class="form-wrapper">
+        <form method="post" th:object="${registForm}" th:action="@{'/registration'}" class="col-12 mx-auto" enctype="multipart/form-data">
+            <div class="form-item">
+                <label for="userId"></label>
+                <input type="text" th:field="*{userId}" name="userId" id="userId" required="required" placeholder="User id"></input>
+            </div>
+            <div class="form-item">
+                <label for="userName"></label>
+                <input type="text" th:field="*{userName}" name="userName" id="userName" required="required" placeholder="User name"></input>
+            </div>
+            <div class="form-item">
+                <label for="encodedPassword"></label>
+                <input type="password" th:field="*{encodedPassword}" name="encodedPassword" id="encodedPassword" required="required" placeholder="Password"></input>
+            </div>
+            <div class="form-item">
+                <label for="againPassword"></label>
+                <input type="password" name="againPassword" id="againPassword" required="required" placeholder="Please type password again"></input>
+            </div>
+            <div class="form-item">
+                <label for="email"></label>
+                <input type="text" th:field="*{email}" name="email" id="email" required="required" placeholder="E-mail"></input>
+            </div>
+            <div class="form-item">
+                <label for="place"></label>
+                <input type="text" th:field="*{place}" name="place" id="place" required="required" placeholder="Place"></input>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-item">
+                            <label for="year"></label>
+                            <input type="text" th:field="*{year}" name="year" id="year" required="required" placeholder="Year"></input>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-item">
+                            <label for="month"></label>
+                            <input type="text" th:field="*{month}" name="month" id="month" required="required" placeholder="Month"></input>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-item">
+                            <label for="day"></label>
+                            <input type="text" th:field="*{day}" name="day" id="day" required="required" placeholder="Day"></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-panel">
+                <input type="submit" class="button" title="Sign In" value="Submit"></input>
+            </div>
+        </form>
+    </div>
+</header>
+<script src="/js/jquery-3.3.1.slim.min.js" th:href="@{/js/jquery-3.3.1.slim.min.js}"></script>
+<script src="/js/bootstrap.bundle.min.js" th:href="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

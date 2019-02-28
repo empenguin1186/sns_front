@@ -1,13 +1,9 @@
 package jp.co.training.snsFront.Controller;
 
-import jp.co.training.snsFront.Model.LoginForm;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,16 +23,15 @@ public class AuthenticationController {
         return "login";
     }
 
-
     /* 動作せず */
-    @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String process(@Validated @ModelAttribute LoginForm form, BindingResult br, Model model){
-        if (br.hasErrors()){
-            return "redirect:/login?error=InputValueIsInvalid";
-        }
-        model.addAttribute(form);
-        return "forward:" + CERT_PROCCESSING_PATH;
-    }
+//    @RequestMapping(path = "/login", method = RequestMethod.POST)
+//    public String process(@Validated @ModelAttribute LoginForm form, BindingResult br, Model model){
+//        if (br.hasErrors()){
+//            return "redirect:/login?error=InputValueIsInvalid";
+//        }
+//        model.addAttribute(form);
+//        return "forward:" + CERT_PROCCESSING_PATH;
+//    }
 
 //    @RequestMapping(path="/authenticate", method = RequestMethod.POST)
 //    public String loginSuccess(@ModelAttribute LoginForm form, RedirectAttributes attributes) {

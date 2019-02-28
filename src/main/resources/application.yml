@@ -16,7 +16,19 @@ path:
   LOGIN_PATH: /login
   DEFAULT_SUCCESS_PATH: /timeline
   LOGOUT_PATH: /logout
+  REGIST_PATH: /registration
 
 role:
   USER: USER
   ADMIN: ADMIN
+
+date:
+  year:
+    max: 2019
+  month:
+    min: 1
+    max: 12
+  day:
+    min: 1
+    max: 31
+

@@ -32,3 +32,34 @@ date:
     min: 1
     max: 31
 
+# mail 設定
+mail:
+  user: ********
+  host: smtp.gmail.com
+  from: ********
+  password: **********
+  charset: UTF-8
+  encoding: base64
+  port: 587
+  starttls: true
+  connectiontimeout: 10000
+  timeout: 10000
+  debug: true
+  auth: true
+#  smtp:
+#    user:
+#    host:
+#    port:
+#    from:
+#    connectiontimeout:
+#    timeout: 0
+#    writetimeout: 0
+#    auth: false
+#    ssl:
+#      enable: false
+#    starttls:
+#      enable: false
+#    socketFactory:
+#      class: javax.net.ssl.SSLSocketFactory
+#      fallback: false
+#      port:

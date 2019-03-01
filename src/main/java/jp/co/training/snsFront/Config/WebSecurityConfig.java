@@ -1,4 +1,4 @@
-package jp.co.training.snsFront;
+package jp.co.training.snsFront.Config;
 
 import lombok.Getter;
 import lombok.Setter;

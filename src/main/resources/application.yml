@@ -34,10 +34,10 @@ date:
 
 # mail 設定
 mail:
-  user: adelypenguin3193@gmail.com
+  user: ****
   host: smtp.gmail.com
-  from: adelypenguin3193@gmail.com
-  password: jedi@334force
+  from: ****
+  password: ****
   charset: UTF-8
   encoding: base64
   port: 587

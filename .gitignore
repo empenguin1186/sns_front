@@ -25,4 +25,4 @@ target
 /.nb-gradle/
 /build/
 
-application.yml
+/src/main/resources/application.yml

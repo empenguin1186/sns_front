@@ -1,6 +1,6 @@
 package jp.co.training.snsFront.Controller;
 
-import jp.co.training.snsFront.Model.User;
+import jp.co.training.snsFront.Bean.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

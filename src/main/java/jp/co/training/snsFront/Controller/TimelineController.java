@@ -1,6 +1,6 @@
 package jp.co.training.snsFront.Controller;
 
-import jp.co.training.snsFront.Model.Tweet;
+import jp.co.training.snsFront.Bean.Tweet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.RequestEntity;

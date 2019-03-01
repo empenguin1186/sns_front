@@ -1,6 +1,6 @@
 package jp.co.training.snsFront.Service;
 
-import jp.co.training.snsFront.Model.UserCredentials;
+import jp.co.training.snsFront.Bean.UserCredentials;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;

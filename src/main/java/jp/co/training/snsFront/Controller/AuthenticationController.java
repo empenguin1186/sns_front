@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
 @Data
+@Controller
 @ConfigurationProperties(prefix = "path")
 public class AuthenticationController {
 
     private String CERT_PROCCESSING_PATH;
 
-    @RequestMapping(path = {"/", "/login"}, method = RequestMethod.GET)
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String login(@RequestParam(value = "error", required = false) String error, Model model) {
         if (error != null) {
             model.addAttribute("errorMessage", error);
@@ -25,7 +25,7 @@ public class AuthenticationController {
 
     /* 動作せず */
 //    @RequestMapping(path = "/login", method = RequestMethod.POST)
-//    public String process(@Validated @ModelAttribute LoginForm form, BindingResult br, Model model){
+//    public String process(@Validated @ModelAttribute LoginForm form, BindingResult br, Bean model){
 //        if (br.hasErrors()){
 //            return "redirect:/login?error=InputValueIsInvalid";
 //        }

@@ -1,8 +1,7 @@
-package jp.co.training.snsFront.Model;
+package jp.co.training.snsFront.Bean;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;

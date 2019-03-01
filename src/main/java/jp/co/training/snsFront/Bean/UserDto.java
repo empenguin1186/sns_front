@@ -1,4 +1,4 @@
-package jp.co.training.snsFront.Model;
+package jp.co.training.snsFront.Bean;
 
 import lombok.Data;
 

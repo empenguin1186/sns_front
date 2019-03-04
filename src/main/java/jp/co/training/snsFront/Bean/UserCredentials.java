@@ -15,5 +15,5 @@ public class UserCredentials {
 
     private Set<String> roles;
 
-    private Set<String> aithorities;
+    private Set<String> authorities;
 }

@@ -30,7 +30,8 @@ public class TimelineService {
         RequestEntity requestEntity = RequestEntity
                 .get(new URI(uri + "tweets/"+userId+"/follow"))
                 .build();
-        ResponseEntity<List<Tweet>> responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<Tweet>>(){});
+        ResponseEntity<List<Tweet>> responseEntity = restTemplate.exchange(requestEntity,
+                new ParameterizedTypeReference<List<Tweet>>(){});
         return responseEntity.getBody();
     }
 }

@@ -10,6 +10,8 @@ logging:
 # APIエンドポイント設定
 endpoint:
   uri: http://localhost:8080/
+  servlet:
+    context-path: /demo
 
 path:
   CERT_PROCCESSING_PATH: /authenticate
@@ -17,6 +19,7 @@ path:
   DEFAULT_SUCCESS_PATH: /timeline
   LOGOUT_PATH: /logout
   REGIST_PATH: /registration
+  UPDATE_PATH: /update
 
 role:
   USER: USER
@@ -34,10 +37,10 @@ date:
 
 # mail 設定
 mail:
-  user: ****
+  user: adelypenguin3193@gmail.com
   host: smtp.gmail.com
-  from: ****
-  password: ****
+  from: adelypenguin3193@gmail.com
+  password: jedi@334force
   charset: UTF-8
   encoding: base64
   port: 587
@@ -46,3 +49,17 @@ mail:
   timeout: 10000
   debug: true
   auth: true
+
+security:
+  oauth2:
+    client:
+      client-id: d56ba6ce9d760554ebba
+      client-secret: c3daa716cf8613e5b4735a02613fc61dbb8d7807
+      access-token-uri: https://github.com/login/oauth/access_token
+      user-authorization-uri: https://github.com/login/oauth/authorize
+      client-authentication-scheme: form
+    resource:
+      user-info-uri: https://api.github.com/user
+      prefer-token-info: false
+    sso:
+      login-path: /login

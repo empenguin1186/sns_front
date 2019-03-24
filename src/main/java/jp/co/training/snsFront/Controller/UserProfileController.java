@@ -21,4 +21,5 @@ public class UserProfileController {
 		return "profile";
 	}
 
+
 }

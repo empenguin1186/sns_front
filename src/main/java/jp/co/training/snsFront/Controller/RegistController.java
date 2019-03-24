@@ -50,7 +50,7 @@ public class RegistController {
         if (result.hasErrors()){
             return getForm("error", model);
         }
-        registService.regist(form);
+        registService.registUser(form);
         mailService.send("ようこそSNSへ", "クリックしてね", form.getEmail());
         return "login";
     }

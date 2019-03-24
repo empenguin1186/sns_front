@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -25,6 +26,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @Configuration
 @ConfigurationProperties(prefix = "path")
+@Order(1000)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${role.USER}")
@@ -37,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private String DEFAULT_SUCCESS_PATH;
 
     private String LOGOUT_PATH;
+
+    private static final String REMEMBER_ME_KEY = "sampleRememberMeKey";
 
     @Autowired
     @Qualifier("authenticationRealm")
@@ -64,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String[] permittedUrls = {LOGIN_PATH, CERT_PROCCESSING_PATH};
         http.authorizeRequests()
                 .antMatchers(permittedUrls).permitAll()
-                .antMatchers("/timeline").hasAnyAuthority(ROLE_USER);
+                .antMatchers("/timeline").hasAuthority(ROLE_USER);
 
         http.formLogin()
                 .loginProcessingUrl(CERT_PROCCESSING_PATH)
@@ -83,6 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl(LOGIN_PATH)
                 .invalidateHttpSession(true)
                 .permitAll();
+
     }
 }
 
